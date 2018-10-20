@@ -19,6 +19,17 @@ class Triangle
     end
   end
 
+  def legal_triangle
+    legal = [(side1 + side2 > side3), (side2 + side3 > side1), (side1 + side3 > side2)]
+    [side1, side2, side3].each do |s|
+      if s <= 0 
+        legal << false 
+      end
+      raise TriangleError if legal.include?(false)
+    end
+  end
+  
+
   class TriangleError < StandardError
   end
 end
